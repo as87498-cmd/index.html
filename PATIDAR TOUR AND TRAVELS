@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patidar Tour & Travels - Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff4b2b;
+            --secondary-color: #ff416c;
+            --dark-bg: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 24px;
+            border: 3px solid var(--secondary-color);
+        }
+
+        h1 { margin: 5px 0; font-weight: 600; letter-spacing: 1px; }
+        .tagline { font-style: italic; color: #ddd; margin-bottom: 25px; font-size: 0.9em; }
+
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-size: 0.85em; color: #ffbc00; }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .btn:active { transform: scale(0.98); }
+
+        .whatsapp-icon { vertical-align: middle; margin-right: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">P</div>
+    <h1>Patidar Tour & Travels</h1>
+    <p class="tagline">"Aapke Safar Ka Sachcha Sathi"</p>
+
+    <div class="form-group">
+        <label>Customer Name</label>
+        <input type="text" id="name" placeholder="Apna naam likhein">
+    </div>
+
+    <div class="form-group">
+        <label>Mobile Number</label>
+        <input type="tel" id="mobile" placeholder="Mobile number">
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+        <div class="form-group" style="flex: 1;">
+            <label>From (Kahan se)</label>
+            <input type="text" id="from" placeholder="City">
+        </div>
+        <div class="form-group" style="flex: 1;">
+            <label>To (Kahan tak)</label>
+            <input type="text" id="to" placeholder="Destination">
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+        <div class="form-group" style="flex: 1;">
+            <label>Date</label>
+            <input type="date" id="date">
+        </div>
+        <div class="form-group" style="flex: 1;">
+            <label>Time</label>
+            <input type="time" id="time">
+        </div>
+    </div>
+
+    <button class="btn" onclick="sendToWhatsApp()">
+        Book Now on WhatsApp
+    </button>
+</div>
+
+<script>
+    function sendToWhatsApp() {
+        // Form values
+        const name = document.getElementById('name').value;
+        const mobile = document.getElementById('mobile').value;
+        const from = document.getElementById('from').value;
+        const to = document.getElementById('to').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+
+        if(!name || !mobile || !from || !to) {
+            alert("Bhai, saari details toh bharo!");
+            return;
+        }
+
+        // WhatsApp Number (Aapke friend ka number yahan daalein)
+        const phoneNumber = "91XXXXXXXXXX"; // Example: 919876543210
+
+        // Message Format
+        const message = `*Patidar Tour & Travels - New Inquiry*%0A%0A` +
+                        `👤 *Name:* ${name}%0A` +
+                        `📞 *Contact:* ${mobile}%0A` +
+                        `📍 *From:* ${from}%0A` +
+                        `🏁 *To:* ${to}%0A` +
+                        `📅 *Date:* ${date}%0A` +
+                        `⏰ *Time:* ${time}%0A%0A` +
+                        `Please confirm my booking.`;
+
+        // Open WhatsApp
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
